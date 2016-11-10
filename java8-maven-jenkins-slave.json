@@ -15,8 +15,8 @@
   "parameters": [
     {
       "name": "IMAGE_STREAM_NAME",
-      "description": "The name of the to build the slave from",
-      "value": "java8-maven-centos7",
+      "description": "The name of the image to build the slave from",
+      "value": "python-34-centos7",
       "required": true
     },
     {
