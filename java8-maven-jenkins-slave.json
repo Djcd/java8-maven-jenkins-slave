@@ -15,8 +15,8 @@
   "parameters": [
     {
       "name": "IMAGE_STREAM_NAME",
-      "description": "The name of the image to build the slave from",
-      "value": "python-34-centos7",
+      "description": "The name of the image",
+      "value": "java8-maven-jenkins-slave",
       "required": true
     },
     {
@@ -48,14 +48,14 @@
         "name": "${IMAGE_STREAM_NAME}"
       },
       "spec": {
-        "dockerImageRepository": "openshift/${IMAGE_STREAM_NAME}"
+        "dockerImageRepository": "openshift/base-centos7"
       }
     },
     {
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${IMAGE_STREAM_NAME}-jenkins-slave",
+        "name": "${IMAGE_STREAM_NAME}",
         "annotations": {
           "slave-label": "${IMAGE_STREAM_NAME}",
           "slave-directory": "/opt/app-root/jenkins"
@@ -70,12 +70,12 @@
       "kind": "BuildConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${IMAGE_STREAM_NAME}-slave",
+        "name": "${IMAGE_STREAM_NAME}",
         "annotations": {
           "description": "Modifies the ${IMAGE_STREAM_NAME} to run as Jenkins slave"
         },
         "labels": {
-          "name": "${IMAGE_STREAM_NAME}-slave"
+          "name": "${IMAGE_STREAM_NAME}"
         }
       },
       "spec": {
@@ -101,14 +101,14 @@
           "dockerStrategy": {
             "from": {
               "kind": "ImageStreamTag",
-              "name": "${IMAGE_STREAM_NAME}:latest"
+              "name": "base-centos7:latest"
             }
           }
         },
         "output": {
           "to": {
             "kind": "ImageStreamTag",
-            "name": "${IMAGE_STREAM_NAME}-jenkins-slave:latest"
+            "name": "${IMAGE_STREAM_NAME}:latest"
           }
         },
         "resources": {}
