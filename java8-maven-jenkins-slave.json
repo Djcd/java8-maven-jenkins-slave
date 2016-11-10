@@ -45,7 +45,7 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${IMAGE_STREAM_NAME}"
+        "name": "base-centos7"
       },
       "spec": {
         "dockerImageRepository": "openshift/base-centos7"
@@ -55,9 +55,9 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${IMAGE_STREAM_NAME}",
+        "name": "base-centos7",
         "annotations": {
-          "slave-label": "${IMAGE_STREAM_NAME}",
+          "slave-label": "java8-maven-jenkins-slave",
           "slave-directory": "/opt/app-root/jenkins"
         },
         "labels": {
@@ -72,7 +72,7 @@
       "metadata": {
         "name": "${IMAGE_STREAM_NAME}",
         "annotations": {
-          "description": "Modifies the ${IMAGE_STREAM_NAME} to run as Jenkins slave"
+          "description": "Modifies the base-centos7 image to run as Jenkins slave"
         },
         "labels": {
           "name": "${IMAGE_STREAM_NAME}"
