@@ -55,9 +55,9 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "base-centos7",
+        "name": "${IMAGE_STREAM_NAME}",
         "annotations": {
-          "slave-label": "java8-maven-jenkins-slave",
+          "slave-label": "${IMAGE_STREAM_NAME}",
           "slave-directory": "/opt/app-root/jenkins"
         },
         "labels": {
