@@ -3,15 +3,8 @@ FROM openshift/base-centos7
 
 # Install headless Java
 USER root
-RUN yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus epel-release && \
-    rpmkeys --import file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 && \
-    yum install -y --setopt=tsflags=nodocs install java-1.8.0-openjdk-headless nss_wrapper && \
-    yum clean all && \
-    mkdir -p /opt/app-root/jenkins && \
-    chown -R 1001:0 /opt/app-root/jenkins && \
-    chmod -R g+w /opt/app-root/jenkins
-
-RUN echo "export JAVA_HOME=/usr/java/default/" > /etc/profile.d/java_home.sh
+RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.rpm"
+RUN yum localinstall jdk-8u60-linux-x64.rpm
 
 ENV MAVEN_VERSION 3.3.9
 
