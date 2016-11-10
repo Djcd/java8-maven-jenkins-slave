@@ -11,6 +11,8 @@ RUN yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus epel-release 
     chown -R 1001:0 /opt/app-root/jenkins && \
     chmod -R g+w /opt/app-root/jenkins
 
+RUN echo "export JAVA_HOME=/usr/java/default/" > /etc/profile.d/java_home.sh
+
 ENV MAVEN_VERSION 3.3.9
 
 # Install Maven
